@@ -46,23 +46,20 @@ let cart = [];
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
-const addProductToCart = function (productID) {
+const addProductToCart = function (productId) {
   for (x = 0; x < products.length; x++) {
-    if (products[x].productId === productID) {
+    if (products[x].productId === productId) {
       if (cart.length > 0) {
-        for (y = 0; y < cart.length; y++) {
-          if (cart[y].productId === productID) {
-            cart[y].quantity += 1;
-            return cart;
+          if (cart.includes(products[x])) {
+            const itemIndex = cart.indexOf(products[x]); 
+            cart[itemIndex].quantity += 1;
+            return cart; 
           } else {
             cart = cart.concat(products[x]);
             return cart;
           };
-        };
       } else {
         cart = [products[x]];
-        return cart;
-
       };
     };
   };

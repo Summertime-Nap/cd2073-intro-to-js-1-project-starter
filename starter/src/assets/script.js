@@ -5,7 +5,7 @@ const products = [
     price: 5.15,
     quantity: 1,
     productId: 0,
-    image: 'cherry.jpg'
+    image: 'images\cherry.jpg'
   },
   
   orange = {
@@ -13,7 +13,7 @@ const products = [
     price: 0.75,
     quantity: 1,
     productId: 1,
-    image: 'orange.jpg'
+    image: 'images\orange.jpg'
   },
   
   strawberry = {
@@ -21,7 +21,7 @@ const products = [
     price: 4.35,
     quantity: 1,
     productId: 2,
-    image: 'strawberry.jpg'
+    image: 'images\strawberry.jpg'
   },
 ];
 /* Create 3 or more product objects using object literal notation 

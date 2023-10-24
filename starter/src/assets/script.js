@@ -5,7 +5,7 @@ const products = [
     price: 5.15,
     quantity: 1,
     productId: 0,
-    image: 'images\cherry.jpg'
+    image: 'images/cherry.jpg'
   },
   
   orange = {
@@ -13,7 +13,7 @@ const products = [
     price: 0.75,
     quantity: 1,
     productId: 1,
-    image: 'images\orange.jpg'
+    image: 'images/orange.jpg'
   },
   
   strawberry = {
@@ -21,7 +21,7 @@ const products = [
     price: 4.35,
     quantity: 1,
     productId: 2,
-    image: 'images\strawberry.jpg'
+    image: 'images/strawberry.jpg'
   },
 ];
 /* Create 3 or more product objects using object literal notation 
@@ -98,14 +98,17 @@ const decreaseQuantity = function (productId) {
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
+
 const removeProductFromCart = function (productId) {
-  for (x = 0; x < cart.length; x++) {
-    if ( cart[x].productId === productId) {
-      cart.splice(x, 1);
-      return cart;
+  cart.forEach(cartItem => {
+    if (cartItem.productId === productId) {
+      cartItem.quantity = 0;
+      const index = cart.indexOf(cartItem);
+      cart.splice(index, 1);
     };
-  };
+  });
 };
+
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
   - cartTotal should return the sum of the products in the cart

@@ -56,10 +56,13 @@ const addProductToCart = function (productId) {
             return cart; 
           } else {
             cart = cart.concat(products[x]);
+            const itemIndex = cart.indexOf(products[x]);
+            cart[itemIndex].quantity++;
             return cart;
           };
       } else {
         cart = [products[x]];
+        cart[0].quantity++;
       };
     };
   };
@@ -70,12 +73,9 @@ const addProductToCart = function (productId) {
   - increaseQuantity should then increase the product's quantity
 */
 const increaseQuantity = function (productId) {
-  for (x = 0; x < cart.length; x++) {
-    if (cart[x].productId === productId) {
-      cart[x].quantity += 1;
-      return cart;
-    };
-  };
+    const cartItem = cart.find( Item => Item.productId === productId);
+    cartItem.quantity++;
+
 };
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
@@ -116,11 +116,13 @@ const cartTotal = function () {
   for (x = 0; x < cart.length; x++) {
     total += cart[x].price * cart[x].quantity;
   };
-  return Number(total.toFixed(2));
+  const cart_total = Number(total.toFixed(2))
+  return cart_total;
 };
 /* Create a function called emptyCart that empties the products from the cart */
 const emptyCart = function () {
   for (x = 0; x < cart.length; x++) {
+    cart[x].quantity = 0;
     cart.pop();
   };
   return cart;
@@ -129,10 +131,20 @@ const emptyCart = function () {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
+
+let totalPaid = 0;
+
 const pay = function (amount) {
-  cartTotal();
-  let grandTotal = amount - total;
-  return Number(grandTotal.toFixed(2));
+  totalPaid += amount;
+  let remaining = totalPaid - cartTotal();
+  remaining = Number(remaining.toFixed(2));
+  if (remaining >= 0) {
+    emptyCart();
+    totalPaid = 0;
+    return remaining;
+  }else {
+    return remaining;
+  }
 };
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 

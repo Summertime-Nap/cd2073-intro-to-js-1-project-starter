@@ -3,23 +3,23 @@ const products = [
   cherry = {
     name: 'Cherry',
     price: 5.15,
-    quantity: 1,
+    quantity: 0,
     productId: 0,
     image: 'images/cherry.jpg'
   },
-  
+
   orange = {
     name: 'Orange',
     price: 0.75,
-    quantity: 1,
+    quantity: 0,
     productId: 1,
     image: 'images/orange.jpg'
   },
-  
+
   strawberry = {
     name: 'Strawberry',
     price: 4.35,
-    quantity: 1,
+    quantity: 0,
     productId: 2,
     image: 'images/strawberry.jpg'
   },
@@ -70,7 +70,7 @@ const addProductToCart = function (productId) {
   - increaseQuantity should then increase the product's quantity
 */
 const increaseQuantity = function (productId) {
-  for ( x = 0; x < cart.length; x++) {
+  for (x = 0; x < cart.length; x++) {
     if (cart[x].productId === productId) {
       cart[x].quantity += 1;
       return cart;
@@ -83,7 +83,7 @@ const increaseQuantity = function (productId) {
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
 const decreaseQuantity = function (productId) {
-  for ( x = 0; x < cart.length; x++) {
+  for (x = 0; x < cart.length; x++) {
     if (cart[x].productId === productId) {
       cart[x].quantity -= 1;
       if (cart[x].quantity <= 0) {
@@ -91,14 +91,13 @@ const decreaseQuantity = function (productId) {
         return cart;
       };
     };
-  };
+  }
 };
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
-
 const removeProductFromCart = function (productId) {
   cart.forEach(cartItem => {
     if (cartItem.productId === productId) {
@@ -108,7 +107,6 @@ const removeProductFromCart = function (productId) {
     };
   });
 };
-
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
   - cartTotal should return the sum of the products in the cart
@@ -118,11 +116,11 @@ const cartTotal = function () {
   for (x = 0; x < cart.length; x++) {
     total += cart[x].price * cart[x].quantity;
   };
-  return total;
+  return Number(total.toFixed(2));
 };
 /* Create a function called emptyCart that empties the products from the cart */
 const emptyCart = function () {
-  for ( x = 0; x < cart.length; x++) {
+  for (x = 0; x < cart.length; x++) {
     cart.pop();
   };
   return cart;
@@ -133,10 +131,10 @@ const emptyCart = function () {
 */
 const pay = function (amount) {
   cartTotal();
-  return amount - total;
+  let grandTotal = amount - total;
+  return Number(grandTotal.toFixed(2));
 };
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
-
 
 /* The following is for running unit tests. 
    To fully complete this project, it is expected that all tests pass.
@@ -152,8 +150,8 @@ module.exports = {
   decreaseQuantity,
   removeProductFromCart,
   cartTotal,
-  pay, 
+  pay,
   emptyCart,
   /* Uncomment the following line if completing the currency converter bonus */
   // currency
-}
+};
